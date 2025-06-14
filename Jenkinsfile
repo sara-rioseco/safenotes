@@ -2,6 +2,14 @@ pipeline {
     agent any
 
     stages {
+        stage('Check Environment') {
+            steps {
+                bat 'where npm || echo "npm not found"'
+                bat 'npm -v'
+                bat 'node -v'
+            }
+        }
+
         stage('Install Dependencies') {
             steps {
                 bat 'npm install'
@@ -16,7 +24,7 @@ pipeline {
 
         stage('Security Scan') {
             steps {
-                bat 'dependency-check --project "SafeNotes" --scan . --format "HTML"'
+                bat 'dependency-check --project "SafeNotes" --scan . --format "HTML" --out . --outfile dependency-check-report'
             }
         }
     }

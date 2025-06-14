@@ -4,8 +4,8 @@ pipeline {
     stages {
         stage('Check Environment') {
             steps {
-                bat 'where npm || echo "npm not found"'
                 bat 'fnm use 20'
+                bat 'where npm || echo "npm not found"'
                 bat 'npm -v'
                 bat 'node -v'
             }

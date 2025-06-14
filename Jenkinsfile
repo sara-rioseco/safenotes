@@ -4,7 +4,6 @@ pipeline {
     stages {
         stage('Check Environment') {
             steps {
-                bat 'eval "$(fnm env --use-on-cd)'
                 bat 'fnm env --use-on-cd'
                 bat 'fnm use 20'
                 bat 'where npm || echo "npm not found"'
